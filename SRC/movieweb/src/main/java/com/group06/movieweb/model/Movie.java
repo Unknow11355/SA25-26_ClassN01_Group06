@@ -1,21 +1,27 @@
 package com.group06.movieweb.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "movies")
 public class Movie {
+
+    @Id
     private String id;
     private String title;
-    private String genre;
-    private double price;
-    private boolean isPremium;
+    private String director;
+    private int duration;
+    private String description;
 
     public Movie() {
     }
 
-    public Movie(String id, String title, String genre, double price, boolean isPremium) {
+    public Movie(String id, String title, String director, int duration, String description) {
         this.id = id;
         this.title = title;
-        this.genre = genre;
-        this.price = price;
-        this.isPremium = isPremium;
+        this.director = director;
+        this.duration = duration;
+        this.description = description;
     }
 
     public String getId() { return id; }
@@ -24,12 +30,12 @@ public class Movie {
     public String getTitle() { return title; }
     public void setTitle(String title) { this.title = title; }
 
-    public String getGenre() { return genre; }
-    public void setGenre(String genre) { this.genre = genre; }
+    public String getDirector() { return director; }
+    public void setDirector(String director) { this.director = director; }
 
-    public double getPrice() { return price; }
-    public void setPrice(double price) { this.price = price; }
+    public int getDuration() { return duration; }
+    public void setDuration(int duration) { this.duration = duration; }
 
-    public boolean isPremium() { return isPremium; }
-    public void setPremium(boolean isPremium) { this.isPremium = isPremium; }
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
 }

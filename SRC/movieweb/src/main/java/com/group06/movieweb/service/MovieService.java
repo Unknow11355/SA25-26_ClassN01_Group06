@@ -4,31 +4,34 @@ import com.group06.movieweb.model.Movie;
 import com.group06.movieweb.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
 public class MovieService {
-    private final MovieRepository repo;
 
     @Autowired
-    public MovieService(MovieRepository repo) {
-        this.repo = repo;
-    }
+    private MovieRepository movieRepository;
 
-    public Movie createMovie(Movie movie) {
-        if (movie.getTitle() == null || movie.getTitle().isEmpty()) {
-            throw new IllegalArgumentException("Tên phim không được để trống");
-        }
-        return repo.save(movie);
-    }
-
+    // 1. Lấy tất cả phim
     public List<Movie> getAllMovies() {
-        return repo.findAll();
+        return movieRepository.findAll();
     }
 
-    public Movie getMovieDetail(String id) {
-        Movie m = repo.findById(id);
-        if (m == null) throw new RuntimeException("Không tìm thấy phim");
-        return m;
+    // 2. Thêm phim mới
+    public Movie addMovie(Movie movie) {
+        // Kiểm tra xem ID đã tồn tại chưa (đơn giản)
+        if (movieRepository.existsById(movie.getId())) {
+            throw new RuntimeException("Movie ID already exists!");
+        }
+        return movieRepository.save(movie);
+    }
+
+    // 3. Xóa phim (Thêm sau nếu cần)
+    public void deleteMovie(String id) {
+        movieRepository.deleteById(id);
+    }
+    public List<Movie> searchMovies(String keyword) {
+        return movieRepository.findByTitleContainingIgnoreCase(keyword);
     }
 }

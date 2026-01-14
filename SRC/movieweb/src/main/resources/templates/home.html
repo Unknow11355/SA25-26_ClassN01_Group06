@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Trang chủ - Đặt vé xem phim</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head> 
+<body class="bg-light">
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">🎬 Phim Đang Chiếu</h1>
+
+    <div class="row">
+        <div class="col-md-4 mb-4" th:each="movie : ${movies}">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title text-primary" th:text="${movie.title}">Tên phim</h5>
+                    <p class="card-text">
+                        <strong>Đạo diễn:</strong> <span th:text="${movie.director}">...</span><br>
+                        <strong>Thời lượng:</strong> <span th:text="${movie.duration}">...</span> phút
+                    </p>
+                    <a href="#" class="btn btn-danger w-100">Đặt vé ngay</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
