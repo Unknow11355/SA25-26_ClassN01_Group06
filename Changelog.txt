@@ -1,0 +1,39 @@
+Phase 1: Layered Monolith (Initial Release - MVP)
+✨ Added
+
+Layered Architecture: Developed the project boilerplate strictly adhering to the 3-Tier model (Controller → Service → Repository) using Node.js and Express.js.
+
+Data Storage: Established a File System-based (JSON) database including users.json, movies.json, and bookings.json to facilitate Rapid Prototyping.
+
+Authentication Module: Implemented registration, login, and user session management (Basic Session/Token) for the Member user group.
+
+Movie Catalog Module: Features for displaying "Now Showing" / "Coming Soon" lists, viewing movie details, and keyword-based search.
+
+Synchronous Booking Flow: Core booking workflow including: Showtime Selection → Seat Selection (with Available/Occupied status) → Total Price Calculation → Successful Payment Simulation.
+
+UI/UX: Basic Frontend interface using HTML5, CSS3, and Vanilla JavaScript (utilizing AJAX Fetch API to provide a Single Page Feel experience).
+
+Phase 2: Microservices & Event-Driven Architecture (Current)
+✨ Added
+
+API Gateway Component: Integrated http-proxy-middleware running on Port 8000 (or 5000) to serve as the Single Entry Point for all clients.
+
+Booking Microservice: Initialized a fully independent service on Port 3001 (or 5002) dedicated to booking logic and Seat Selection/Reservation.
+
+Database per Service: Decoupled bookings.json to grant full Data Ownership to the Booking Service.
+
+RabbitMQ Integration (Message Broker): Added the amqplib library to implement the Event-Driven Architecture (EDA) model.
+
+Asynchronous Email Worker: Implemented a "Fire-and-Forget" mechanism to publish BOOKING_CREATED events to a Queue for Background Processing of confirmation emails.
+
+🔄 Changed
+
+Routing Mechanism: Reconfigured the entire network routing. Clients no longer call Port 3000 directly. All /booking requests are automatically redirected (Reverse Proxy) by the Gateway to the Booking Service. All other requests (Fallback) are routed to the Legacy Service.
+
+Performance Optimization: Transitioned the booking workflow from Synchronous to Asynchronous, reducing API Latency from ~2000ms to approximately ~50ms.
+
+Frontend Integration: Updated URL endpoints in the fetch() functions within login.js and other frontend files to point consistently to the API Gateway address.
+
+🗑 Removed
+
+Legacy Code Cleanup: Removed all Booking Logic and direct bookings.json file handling from the Legacy Monolith (Server 3000) to enforce the Separation of Concerns principle.
