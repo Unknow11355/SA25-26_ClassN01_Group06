@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova Cinemas - Trang chủ</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="css/promotion.css">
+</head>
+<body>
+
+     <div class="top-bar">
+        <div class="top-bar-container">
+            <div id="user-display" class="user-display">
+                <a href="/login">Đăng nhập</a>
+                <span class="divider">/</span>
+                <a href="/login?mode=register">Đăng ký</a>
+            </div>
+
+            <div class="lang-switch">
+                <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Vietnam.svg" width="20"> VN</a>
+                <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg" width="20"> EN</a>
+            </div>
+        </div>
+    </div>
+
+    <header class="main-header">
+        <div class="header-container">
+            <a href="/" class="logo">
+                <img src="images/main.jpg" alt="Beta Cinemas" style="height: 40px;">
+            </a>
+            
+            <nav class="nav-list">
+                <a href="/schedule">LỊCH CHIẾU THEO RẠP</a>
+                <a href="index.html" class="active">PHIM</a>
+                <a href="news.html">THÔNG BÁO VÀ ƯU ĐÃI</a>
+                <a href="profile.html">TÀI KHOẢN</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="carousel-container">
+            <div class="carousel-slide">
+                <img src="images/pho1.jpg" id="lastClone" alt="Banner 1">
+                <img src="images/ma.jpg" alt="Banner 2">
+                <img src="images/do.jpg" alt="Banner 3">
+                <img src="images/ma2.jpg" alt="Banner 4">
+    </div>
+
+    <button id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+    <button id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+</div>
+
+        <div class="page-tabs">
+            <div class="tab-item active">PHIM ĐANG CHIẾU</div>
+            <div class="tab-item">PHIM SẮP CHIẾU</div>
+            <div class="tab-item">SUẤT CHIẾU ĐẶC BIỆT</div>
+        </div>
+
+        <div id="movie-container" class="movie-grid">
+            <p>Đang tải danh sách phim...</p>
+        </div>
+
+    </div>
+
+    <footer>
+        <p style="text-align: center; padding: 20px; background: #333; color: white; margin-top: 50px;">
+            &copy; 2026 Nova Cinemas Clone. All rights reserved.
+        </p>
+    </footer>
+
+    <div id="schedule-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeScheduleModal()">&times;</span>
+            <div class="modal-header">
+                <div class="modal-poster"><img id="modal-poster" src="" alt="Poster"></div>
+                <div class="modal-info">
+                    <h2 id="modal-title">Tên Phim</h2>
+                    <p id="modal-desc" class="modal-desc">Thể loại | Thời lượng</p>
+                    <div class="price-badge" id="modal-price">0 đ/vé</div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="section-title">Chọn ngày chiếu:</div>
+                <div class="date-list" id="date-list"></div>
+                <hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
+                <div class="section-title">Chọn suất chiếu:</div>
+                <div class="time-list" id="time-list"><p style="font-size:13px; color:#999;">Vui lòng chọn ngày trước</p></div>
+            </div>
+            <div class="modal-footer">
+                <button id="btn-confirm-schedule" class="btn-confirm" onclick="confirmSchedule()" disabled>CHỌN GHẾ NGAY</button>
+            </div>
+        </div>
+    </div>
+    <div id="trailer-modal" class="trailer-overlay">
+    <div class="trailer-content">
+        <span class="close-modal" onclick="closeTrailerModal()">&times;</span>
+        
+        <div class="modal-header">
+            <h3 id="trailer-title">TRAILER</h3>
+        </div>
+        
+        <hr class="trailer-divider">
+        
+        <div class="video-container">
+            <iframe id="trailer-iframe" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+    </div>
+</div>
+    <script src="js/index.js"></script>
+
+</body>
+</html>

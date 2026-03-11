@@ -1,0 +1,166 @@
+/* IMPORT FONT */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap');
+
+:root {
+    --promo-brown: #795548;
+    --radius-card: 16px;
+    --shadow-soft: 0 8px 20px rgba(0,0,0,0.06);
+}
+
+/* TIÊU ĐỀ */
+.section-title-promo {
+    text-align: center;
+    color: var(--promo-brown);
+    font-family: 'Quicksand', sans-serif;
+    font-size: 26px;
+    margin-bottom: 35px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+/* --- BENTO GRID LAYOUT (PHẦN QUAN TRỌNG NHẤT) --- */
+.promo-grid {
+    display: grid;
+    /* Chia màn hình thành 4 cột */
+    grid-template-columns: repeat(4, 1fr);
+    /* Chiều cao mỗi dòng cơ sở là 220px */
+    grid-auto-rows: 220px;
+    gap: 15px; /* Khoảng cách giữa các ô */
+    width: 100%;
+}
+
+/* --- CẤU HÌNH CARD CƠ BẢN --- */
+.promo-card {
+    background: #fff;
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    position: relative;
+    transition: transform 0.3s ease;
+    /* Để nội dung bung ra lấp đầy ô to */
+    display: flex;
+    flex-direction: column; 
+}
+
+.promo-card:hover {
+    transform: translateY(-5px);
+    z-index: 2; /* Nổi lên trên khi hover */
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+/* --- CẤU HÌNH ẢNH & CHỮ --- */
+.img-container {
+    width: 100%;
+    /* Quan trọng: Ảnh sẽ tự giãn để lấp đầy khoảng trống của ô to/bé */
+    flex-grow: 1; 
+    overflow: hidden;
+    position: relative;
+}
+
+.promo-img {
+    width: 100%; height: 100%; 
+    object-fit: cover; /* Đảm bảo ảnh luôn đẹp dù ô méo hay tròn */
+    transition: transform 0.6s ease;
+}
+
+.promo-card:hover .promo-img { transform: scale(1.1); }
+
+/* Phần chữ nằm đè lên ảnh hoặc dưới ảnh tùy thích, ở đây để dưới cho sạch */
+.promo-caption {
+    padding: 15px;
+    background: #fff;
+    display: flex;
+    justify-content: space-between; /* Đẩy tiêu đề và nút sang 2 bên */
+    align-items: center;
+    height: 60px; /* Chiều cao cố định cho phần chân */
+    flex-shrink: 0; /* Không bị co lại */
+}
+
+.promo-title {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: #333;
+    margin: 0;
+    /* Giới hạn 1 dòng + dấu ... */
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 70%;
+}
+
+.btn-details {
+    padding: 6px 14px;
+    background: var(--promo-brown);
+    color: #fff;
+    border: none; border-radius: 20px;
+    font-size: 11px; font-weight: 600;
+    cursor: pointer;
+    font-family: 'Quicksand', sans-serif;
+    white-space: nowrap;
+}
+
+/* --- TÙY BIẾN Ô TO Ô BÉ (MAGIC HERE) --- */
+
+/* Ô số 1 (Tuyển dụng): TO BỰ (Chiếm 2 cột, 2 dòng) */
+.promo-card:nth-child(1) {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+/* Ô số 1: Chữ to hơn chút cho xứng tầm */
+.promo-card:nth-child(1) .promo-title {
+    font-size: 18px;
+}
+
+/* Ô số 6 (Sweetbox): DÀI NGANG (Chiếm 2 cột) */
+.promo-card:nth-child(6) {
+    grid-column: span 2;
+}
+
+/* Ô số 7 (Ví điện tử): DÀI NGANG (Chiếm 2 cột) */
+.promo-card:nth-child(7) {
+    grid-column: span 2;
+}
+
+
+/* --- RESPONSIVE (CO GIÃN TRÊN MOBILE) --- */
+
+/* Tablet (iPad): Chuyển về 3 cột */
+@media (max-width: 1024px) {
+    .promo-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 cột cho dễ nhìn */
+    }
+    /* Reset lại các ô to trên tablet cho đỡ vỡ */
+    .promo-card:nth-child(1) { grid-column: span 2; grid-row: span 1; } /* Vẫn dài nhưng thấp hơn */
+    .promo-card:nth-child(6) { grid-column: span 1; }
+    .promo-card:nth-child(7) { grid-column: span 1; }
+}
+
+/* Mobile (Điện thoại): 1 cột dọc */
+@media (max-width: 600px) {
+    .promo-grid { grid-template-columns: 1fr; grid-auto-rows: 250px; }
+    .promo-card:nth-child(1) { grid-column: span 1; grid-row: span 1; }
+    .promo-card:nth-child(6) { grid-column: span 1; }
+    .promo-card:nth-child(7) { grid-column: span 1; }
+}
+
+/* --- MODAL POPUP (GIỮ NGUYÊN KHÔNG SỬA) --- */
+.modal-overlay {
+    position: fixed; top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.7);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 9999; opacity: 0; visibility: hidden; transition: 0.3s;
+}
+.modal-overlay.active { opacity: 1; visibility: visible; }
+.modal-box {
+    background: #fff; width: 90%; max-width: 450px;
+    border-radius: 12px; padding: 20px; text-align: center;
+}
+.close-btn {
+    position: absolute; top: 10px; right: 15px; border:none; background:none; font-size: 24px; cursor: pointer;
+}
+.modal-img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 15px;}
+.modal-title { font-weight: bold; font-size: 18px; margin-bottom: 10px; font-family: 'Quicksand';}
+.modal-desc { text-align: left; font-family: 'Quicksand'; margin-bottom: 20px; line-height: 1.5; color: #555;}
+.btn-action { width: 100%; padding: 12px; background: #795548; color: #fff; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;}

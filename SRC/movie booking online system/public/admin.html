@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .admin-table { width: 100%; border-collapse: collapse; margin-top: 20px; background: white; }
+        .admin-table th, .admin-table td { border: 1px solid #ddd; padding: 10px; text-align: left; vertical-align: middle; }
+        .admin-table th { background-color: #03599d; color: white; }
+        .edit-input { width: 100%; padding: 8px; box-sizing: border-box; border:1px solid #ccc; border-radius:4px; }
+        .section-title { margin-top:30px; color:#03599d; border-bottom: 2px solid #03599d; display:inline-block; }
+        
+        /* Style cho nút và form thêm phim */
+        .btn-add { background: #28a745; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        .btn-add:hover { background: #218838; }
+        .add-panel { display: none; background: #f8f9fa; padding: 20px; border: 1px solid #ddd; margin-top: 15px; border-radius: 5px; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-container">
+            <a href="/" class="logo">QUẢN TRỊ VIÊN</a>
+            <div>
+                <span id="admin-hello" style="font-weight:bold; margin-right:10px;"></span>
+                <button onclick="logout()" style="padding:5px 10px; cursor:pointer; background:#dc3545; color:white; border:none; border-radius:3px;">Thoát</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="container" style="padding-top:20px; padding-bottom:50px;">
+        
+        <h2 class="section-title">QUẢN LÝ NGƯỜI DÙNG</h2>
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Username</th>
+                    <th>Họ Tên</th>
+                    <th>SĐT</th>
+                    <th>Role</th>
+                </tr>
+            </thead>
+            <tbody id="user-table-body"></tbody>
+        </table>
+
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:40px; border-bottom: 2px solid #03599d; padding-bottom:5px;">
+            <h2 style="margin:0; color:#03599d; border:none;">QUẢN LÝ PHIM</h2>
+            <button class="btn-add" onclick="toggleAddForm()"><i class="fas fa-plus"></i> THÊM PHIM MỚI</button>
+        </div>
+
+        <div id="add-movie-panel" class="add-panel">
+            <h3 style="margin-top:0">Nhập thông tin phim mới</h3>
+            <form onsubmit="handleAddMovie(event)">
+                <div class="form-grid">
+                    <input type="text" id="add-title" placeholder="Tên phim (*)" class="edit-input" required>
+                    <input type="text" id="add-poster" placeholder="Link ảnh Poster (URL) (*)" class="edit-input" required>
+                    
+                    <input type="text" id="add-category" placeholder="Thể loại (VD: Hành động)" class="edit-input" required>
+                    <input type="text" id="add-duration" placeholder="Thời lượng (VD: 120 phút)" class="edit-input" required>
+                    
+                    <input type="number" id="add-price" placeholder="Giá vé (VNĐ)" class="edit-input" required>
+                    <select id="add-limit" class="edit-input">
+                        <option value="P">P - Mọi lứa tuổi</option>
+                        <option value="T13">T13 - Trên 13 tuổi</option>
+                        <option value="T16">T16 - Trên 16 tuổi</option>
+                        <option value="T18">T18 - Trên 18 tuổi</option>
+                    </select>
+
+                    <input type="text" id="add-director" placeholder="Đạo diễn" class="edit-input">
+                    <input type="text" id="add-date" placeholder="Ngày khởi chiếu (VD: 20/05/2024)" class="edit-input">
+                </div>
+                <div style="margin-top:15px;">
+                    <textarea id="add-desc" rows="3" placeholder="Mô tả phim..." class="edit-input" style="width:100%"></textarea>
+                </div>
+                <div style="text-align:right; margin-top:15px;">
+                    <button type="button" onclick="toggleAddForm()" style="padding:10px 20px; cursor:pointer; background:#6c757d; color:white; border:none; border-radius:4px;">Hủy</button>
+                    <button type="submit" style="background:#03599d; color:white; border:none; padding:10px 20px; cursor:pointer; font-weight:bold; border-radius:4px;">LƯU PHIM</button>
+                </div>
+            </form>
+        </div>
+
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th style="width:30px">ID</th>
+                    <th style="width:80px">Poster</th>
+                    <th>Tên Phim (Sửa được)</th>
+                    <th>Thông tin chi tiết</th>
+                    <th style="width:120px">Giá (Sửa được)</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody id="movie-table-body"></tbody>
+        </table>
+    </div>
+
+    <script src="/js/admin.js"></script>
+</body>
+</html>

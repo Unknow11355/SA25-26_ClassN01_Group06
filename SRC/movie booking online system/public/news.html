@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beta Cinemas - Khuyến Mãi</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="css/promotion.css">
+</head>
+<body>
+
+    <div class="top-bar">
+        <div class="top-bar-container">
+            <div id="user-display" class="user-display">
+                <a href="/login">Đăng nhập</a>
+                <span class="divider">/</span>
+                <a href="/login?mode=register">Đăng ký</a>
+            </div>
+
+            <div class="lang-switch">
+                <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Vietnam.svg" width="20"> VN</a>
+                <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg" width="20"> EN</a>
+            </div>
+        </div>
+    </div>
+
+    <header class="main-header">
+        <div class="header-container">
+            <a href="/" class="logo">
+                <img src="images/main.jpg" alt="Beta Cinemas" style="height: 40px;">
+            </a>
+            
+            <nav class="nav-list">
+                <a href="/schedule">LỊCH CHIẾU THEO RẠP</a>
+                <a href="/">PHIM</a>
+                <a href="/news" class="active">THÔNG BÁO VÀ ƯU ĐÃI</a>
+                <a href="profile.html">TÀI KHOẢN</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container" style="text-align:center; padding-top:50px; min-height: 400px;">
+
+    <div class="container" style="padding-top:40px; padding-bottom: 60px; min-height: 400px;">
+        
+        <h1 class="section-title-promo">TIN TỨC & KHUYẾN MÃI</h1>
+        
+        <div class="promo-grid">
+            
+            <div class="promo-card">
+                <div class="img-container">
+                    <img src="images/n1.jpg" class="promo-img" onerror="this.src='https://via.placeholder.com/400x250/d32f2f/ffffff?text=Tuyen+Dung'">
+                </div>
+                <div class="promo-caption">
+                    <span class="promo-title">NOVA CINEMAS TUYỂN DỤNG PART-TIME</span>
+                    <button class="btn-details" onclick="openModal('job')">Chi tiết <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <div class="promo-card">
+                <div class="img-container">
+                    <img src="images/n2.jpg" class="promo-img" onerror="this.src='https://via.placeholder.com/400x250/1976d2/ffffff?text=Member+Nova'">
+                </div>
+                <div class="promo-caption">
+                    <span class="promo-title">ĐẶC QUYỀN HỘI VIÊN NOVA STAR</span>
+                    <button class="btn-details" onclick="openModal('member')">Chi tiết <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <div class="promo-card">
+                <div class="img-container">
+                    <img src="images/n3.jpg" class="promo-img" onerror="this.src='https://via.placeholder.com/400x250/ffa000/ffffff?text=Combo+Mi'">
+                </div>
+                <div class="promo-caption">
+                    <span class="promo-title">COMBO MÌ LY - XEM PHIM THÊM CUỐN</span>
+                    <button class="btn-details" onclick="openModal('food')">Chi tiết <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <div class="promo-card">
+                <div class="img-container">
+                    <img src="images/n4.jpg" class="promo-img" onerror="this.src='https://via.placeholder.com/400x250/81d4fa/ffffff?text=U22+Student'">
+                </div>
+                <div class="promo-caption">
+                    <span class="promo-title">HỌC SINH SINH VIÊN - ĐỒNG GIÁ 40K</span>
+                    <button class="btn-details" onclick="openModal('u22')">Chi tiết <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <div class="promo-card">
+                <div class="img-container">
+                    <img src="images/n5.jpg" class="promo-img" onerror="this.src='https://via.placeholder.com/400x250/4caf50/ffffff?text=Happy+Tuesday'">
+                </div>
+                <div class="promo-caption">
+                    <span class="promo-title">THỨ 3 VUI VẺ - GIÁ VÉ CHỈ 50K</span>
+                    <button class="btn-details" onclick="openModal('tuesday')">Chi tiết <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <div class="promo-card">
+                <div class="img-container">
+                    <img src="images/n6.jpg" class="promo-img" onerror="this.src='https://via.placeholder.com/400x250/e91e63/ffffff?text=Sweetbox+Couple'">
+                </div>
+                <div class="promo-caption">
+                    <span class="promo-title">SWEETBOX - KHÔNG GIAN RIÊNG CHO ĐÔI TA</span>
+                    <button class="btn-details" onclick="openModal('couple')">Chi tiết <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <div class="promo-card">
+                <div class="img-container">
+                    <img src="images/n7.jpg" class="promo-img" onerror="this.src='https://via.placeholder.com/400x250/009688/ffffff?text=Giam+Gia+Vi+Dien+Tu'">
+                </div>
+                <div class="promo-caption">
+                    <span class="promo-title">GIẢM 10K KHI THANH TOÁN QUA VÍ ĐIỆN TỬ</span>
+                    <button class="btn-details" onclick="openModal('wallet')">Chi tiết <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer style="background:#333; color:white; padding:40px 0; margin-top:50px; text-align:center;">
+        <p>&copy; 2026 Nova Cinemas. All rights reserved.</p>
+    </footer>
+
+    <div class="modal-overlay" id="promoModal">
+        <div class="modal-box">
+            <button class="close-btn" onclick="closeModalBtn()">&times;</button>
+            <img src="" alt="" class="modal-img" id="m-img">
+            <h3 class="modal-title" id="m-title">Title</h3>
+            <div class="modal-desc" id="m-desc">Description</div>
+            <button class="btn-action">Đặt vé ngay</button>
+        </div>
+    </div>
+
+    <script src="/js/index.js"></script>
+    <script src="js/promotion.js"></script>
+
+</body>
+</html>

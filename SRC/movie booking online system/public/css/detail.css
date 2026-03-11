@@ -1,0 +1,116 @@
+/* =========================================
+   STYLE RIÊNG CHO TRANG CHI TIẾT & ĐẶT VÉ
+   ========================================= */
+
+/* Phần thông tin phim */
+.movie-detail-section {
+    background: white; padding: 30px; border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+.time-buttons .btn-time {
+    padding: 8px 15px; border: 1px solid #ccc; background: white;
+    cursor: pointer; border-radius: 4px; margin-right: 5px;
+}
+.time-buttons .btn-time:hover, .btn-time.active {
+    background: #03599d; color: white; border-color: #03599d;
+}
+
+/* =========================================
+   PHẦN CHỌN GHẾ (GIAO DIỆN SÁNG)
+   ========================================= */
+.seat-section {
+    background-color: #ffffff;
+    padding: 30px 0; margin-top: 20px;
+    border-radius: 10px; text-align: center;
+    border: 1px solid #eee;
+}
+
+/* Màn hình 3D màu xanh */
+.screen-container {
+    display: flex; justify-content: center; margin-bottom: 30px; perspective: 800px;
+}
+.screen {
+    width: 400px; height: 40px;
+    background: linear-gradient(to bottom, #03599d, transparent);
+    transform: rotateX(-15deg);
+    box-shadow: 0 15px 20px rgba(3, 89, 157, 0.3);
+    opacity: 0.8; border-radius: 5px;
+}
+.screen-text-label { text-align: center; color: #999; font-size: 12px; margin-top: -20px; margin-bottom: 20px; letter-spacing: 2px; }
+
+/* Sơ đồ ghế */
+#seat-map {
+    display: flex; flex-direction: column; align-items: center; gap: 10px; margin: 20px 0;
+}
+.row { display: flex; gap: 8px; justify-content: center; }
+
+.seat {
+    width: 35px; height: 35px;
+    background: #fff; border: 2px solid #03599d; border-radius: 6px;
+    color: #03599d; font-weight: bold; font-size: 11px;
+    display: flex; align-items: center; justify-content: center; cursor: pointer;
+}
+.seat:hover:not(.sold) { background: #e6f2ff; transform: scale(1.1); }
+.seat.selected { background: #03599d; color: white; box-shadow: 0 0 10px rgba(3, 89, 157, 0.5); }
+.seat.sold { background: #e9ecef; border-color: #ccc; color: #bbb; cursor: not-allowed; text-decoration: line-through; }
+
+/* Thanh thanh toán dưới cùng */
+.booking-bar {
+    position: fixed; bottom: 0; left: 0; width: 100%;
+    background: white; padding: 15px; border-top: 3px solid #03599d;
+    display: flex; justify-content: space-around; align-items: center;
+    box-shadow: 0 -5px 15px rgba(0,0,0,0.1); z-index: 999;
+}
+
+/* Modal Thanh Toán */
+.modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); }
+.modal-content {
+    background-color: white; margin: 10% auto; padding: 30px; border-radius: 10px;
+    width: 350px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.3); position: relative;
+}
+.close { position: absolute; right: 15px; top: 10px; font-size: 24px; cursor: pointer; }
+/* --- CSS CHO PHẦN CHỌN GHẾ (THEME TỐI GIỐNG ẢNH MẪU) --- */
+#seat-interface {
+    background-color: #111; /* Nền đen */
+    padding: 40px;
+    border-radius: 10px;
+    margin-top: 20px;
+    box-shadow: 0 0 50px rgba(0,0,0,0.5);
+}
+
+/* Sửa lại ghế cho nền tối */
+.seat {
+    background-color: #333; /* Ghế màu xám đen */
+    border: 1px solid #555;
+    color: #fff;
+}
+
+.seat:not(.sold):hover {
+    background-color: #555;
+    transform: scale(1.1);
+}
+
+.seat.selected {
+    background-color: #03599d; /* Ghế đang chọn màu xanh Beta */
+    border-color: #03599d;
+    color: white;
+}
+
+.seat.sold {
+    background-color: #b20710; /* Ghế đã bán màu đỏ */
+    border-color: #b20710;
+}
+
+/* Màn hình phát sáng */
+.screen {
+    background: #fff;
+    box-shadow: 0 20px 50px rgba(255, 255, 255, 0.4);
+}
+
+/* Thanh thanh toán ở dưới */
+.booking-bar {
+    background: #222; /* Thanh bar màu tối */
+    border-top: 2px solid #444;
+    color: white;
+}

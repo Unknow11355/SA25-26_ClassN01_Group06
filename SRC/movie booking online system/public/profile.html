@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova Cinemas - Trang chủ</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="css/promotion.css">
+
+    <link rel="stylesheet" href="css/profile.css">
+</head>
+<body>
+
+<div class="top-bar">
+        <div class="top-bar-container">
+            <div id="user-display" class="user-display">
+                <a href="/login">Đăng nhập</a>
+                <span class="divider">/</span>
+                <a href="/login?mode=register">Đăng ký</a>
+            </div>
+
+            <div class="lang-switch">
+                <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Vietnam.svg" width="20"> VN</a>
+                <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg" width="20"> EN</a>
+            </div>
+        </div>
+    </div>
+
+    <header class="main-header">
+        <div class="header-container">
+            <a href="/" class="logo">
+                <img src="images/main.jpg" alt="Beta Cinemas" style="height: 40px;">
+            </a>
+            
+            <nav class="nav-list">
+                <a href="/schedule">LỊCH CHIẾU THEO RẠP</a>
+                <a href="index.html">PHIM</a>
+                <a href="news.html">THÔNG BÁO VÀ ƯU ĐÃI</a>
+                <a href="profile.html"class="active">TÀI KHOẢN</a>
+            </nav>
+        </div>
+</header>
+
+    <div class="profile-wrapper">
+        
+        <div class="sidebar">
+            <div class="user-avatar-circle">
+                <i class="fas fa-user"></i>
+            </div>
+            <h3 id="sidebar-name">Đang tải...</h3>
+            
+            <div class="menu-list">
+                <button id="btn-tab-info" class="active" onclick="showTab('info')">
+                    <i class="fas fa-user-circle"></i> Thông tin tài khoản
+                </button>
+                <button id="btn-tab-card" onclick="showTab('card')">
+                    <i class="fas fa-id-card"></i> Thẻ thành viên
+                </button>
+                <button id="btn-tab-history" onclick="showTab('history')">
+                    <i class="fas fa-history"></i> Lịch sử đặt vé
+                </button>
+                <button onclick="logoutProfile()" style="color: #d32f2f; margin-top: 10px; border-top: 1px solid #eee;">
+                    <i class="fas fa-sign-out-alt"></i> Đăng xuất
+                </button>
+            </div>
+        </div>
+
+        <div class="main-content">
+            
+            <div id="tab-info">
+                <h2 class="section-title">THÔNG TIN TÀI KHOẢN</h2>
+                <form id="profile-form" class="form-grid" onsubmit="updateProfile(event)">
+                    <div class="form-group">
+                        <label>Họ tên <span>*</span></label>
+                        <input type="text" id="pro-fullname" class="form-control" placeholder="Họ và tên">
+                    </div>
+                    <div class="form-group">
+                        <label>Email <span>*</span></label>
+                        <input type="email" id="pro-email" class="form-control" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label>Số điện thoại <span>*</span></label>
+                        <input type="text" id="pro-phone" class="form-control" placeholder="Số điện thoại">
+                    </div>
+                    <div class="form-group">
+                        <label>CMND/Hộ chiếu</label>
+                        <input type="text" id="pro-idcard" class="form-control" placeholder="CMND">
+                    </div>
+                    <div class="form-group">
+                        <label>Ngày sinh <span>*</span></label>
+                        <input type="date" id="pro-dob" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Giới tính</label>
+                        <select id="pro-gender" class="form-control">
+                            <option value="Nam">Nam</option>
+                            <option value="Nữ">Nữ</option>
+                            <option value="Khác">Khác</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Tỉnh/Thành phố</label>
+                        <select id="pro-city" class="form-control">
+                            <option value="">Chọn Tỉnh/Thành phố</option>
+                            <option value="Hanoi">Hà Nội</option>
+                            <option value="HCM">TP. Hồ Chí Minh</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Quận/Huyện</label>
+                        <select id="pro-district" class="form-control">
+                            <option value="">Chọn Quận/Huyện</option>
+                            <option value="CauGiay">Cầu Giấy</option>
+                            <option value="BaDinh">Ba Đình</option>
+                        </select>
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Địa chỉ</label>
+                        <input type="text" id="pro-address" class="form-control" placeholder="Nhập địa chỉ chi tiết...">
+                    </div>
+                    <div class="btn-container">
+                        <button type="submit" class="btn-update">CẬP NHẬT</button>
+                    </div>
+                </form>
+            </div>
+
+            <div id="tab-card" style="display: none;">
+                <h2 class="section-title">THẺ THÀNH VIÊN</h2>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>SỐ THẺ</th>
+                            <th>HẠNG THẺ</th>
+                            <th>NGÀY KÍCH HOẠT</th>
+                            <th>TỔNG CHI TIÊU</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><b style="font-size:16px;">900200<span id="p-card-id">...</span></b><br><small>(Đang hoạt động)</small></td>
+                            <td>Khách Hàng<br><strong style="color:#03599d">STANDARD</strong></td>
+                            <td id="p-active-date">...</td>
+                            <td id="p-total-spend" style="font-weight:bold; color:#d32f2f; font-size: 16px;">0 đ</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="progress-section">
+                    <div class="progress-text">Bạn cần tích lũy thêm <span id="p-need-more" style="color: #d32f2f; font-weight:bold;">3.000.000 đ</span> để nâng hạng VIP</div>
+                    <div class="progress-bar-container">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                    <div class="progress-labels">
+                        <span>Standard (0đ)</span>
+                        <span>VIP (3.000.000đ)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab-history" style="display: none;">
+                <h2 class="section-title">LỊCH SỬ GIAO DỊCH</h2>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>MÃ VÉ</th>
+                            <th>PHIM</th>
+                            <th>RẠP & SUẤT CHIẾU</th>
+                            <th>GHẾ</th>
+                            <th>NGÀY ĐẶT</th>
+                            <th>TỔNG TIỀN</th>
+                        </tr>
+                    </thead>
+                    <tbody id="history-table-body">
+                        </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="js/index.js"></script>
+    <script src="js/profile.js"></script>
+
+</body>
+</html>

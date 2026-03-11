@@ -1,0 +1,47 @@
+[
+  {
+    "username": "admin",
+    "password": "123",
+    "fullName": "Admin Hệ Thống",
+    "role": "admin"
+  },
+  {
+    "username": "khach1",
+    "password": "123",
+    "fullName": "Nguyễn Văn A",
+    "role": "user"
+  },
+  {
+    "username": "baoyen",
+    "password": "12345",
+    "fullName": "Nguyễn Đình Quyền",
+    "role": "user"
+  },
+  {
+    "username": "ngudsf@gmail.com",
+    "password": "27102005",
+    "fullName": "Nguyễn Đình Quyền",
+    "role": "user"
+  },
+  {
+    "username": "huhuhu",
+    "password": "123456",
+    "fullName": "Ối dồi ôi",
+    "phone": "0000000000",
+    "role": "user"
+  },
+  {
+    "username": "askdasa@gmail.com",
+    "password": "123456",
+    "fullName": "Trần Hữu Kiên",
+    "phone": "121231200",
+    "role": "user"
+  },
+  {
+    "username": "nguyendinhquyen27102005@gmail.com",
+    "password": "27102005",
+    "fullName": "Nguyễn Đình Quyền",
+    "phone": "0563146929",
+    "role": "user"
+  }
+]

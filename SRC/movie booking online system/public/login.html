@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập - Beta Cinemas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header class="simple-header">
+        <a href="index.html" class="back-home">
+            <i class="fa-solid fa-arrow-left"></i> Về trang chủ
+        </a>
+    </header>
+
+    <div class="login-wrapper">
+        <div class="login-card">
+            
+            <div class="card-header">
+                <div class="icon-brand">
+                    <i class="fa-solid fa-film"></i>
+                </div>
+                <h2>Nova Cinemas</h2>
+                <p>Thế giới điện ảnh trong tầm tay bạn</p>
+            </div>
+
+            <div class="auth-tabs">
+                <div id="tab-login" class="tab-item active">Đăng nhập</div>
+                <div id="tab-register" class="tab-item">Đăng ký</div>
+            </div>
+
+            <form id="form-login" class="auth-form active">
+                <div class="input-group">
+                    <input type="text" id="login-username" placeholder=" " required>
+                    <label for="login-username">Tên đăng nhập</label>
+                    <i class="fa-regular fa-user input-icon"></i>
+                </div>
+
+                <div class="input-group">
+                    <input type="password" id="login-password" placeholder=" " required>
+                    <label for="login-password">Mật khẩu</label>
+                    <i class="fa-regular fa-eye-slash input-icon toggle-password"></i>
+                </div>
+
+               <div class="form-options">
+    <a href="javascript:void(0)" class="forgot-link" style="cursor: pointer;">Quên mật khẩu?</a>
+</div>
+
+                <button type="submit" class="btn-submit">Đăng nhập ngay</button>
+            </form>
+
+            <form id="form-register" class="auth-form" style="display: none;">
+                <div class="input-group">
+                    <input type="text" id="reg-fullname" placeholder=" " required>
+                    <label for="reg-fullname">Họ và tên</label>
+                </div>
+
+                <div class="input-group">
+                    <input type="text" id="reg-username" placeholder=" " required>
+                    <label for="reg-username">Tên đăng nhập (Dùng để Login)</label>
+                </div>
+
+                <div class="input-group">
+                    <input type="text" id="reg-phone" placeholder=" " required>
+                    <label for="reg-phone">Số điện thoại</label>
+                </div>
+
+                <div class="input-group">
+                    <input type="password" id="reg-password" placeholder=" " required>
+                    <label for="reg-password">Mật khẩu</label>
+                    <i class="fa-regular fa-eye-slash input-icon toggle-password"></i>
+                </div>
+
+                <div class="input-group">
+                    <input type="password" id="reg-confirm-pass" placeholder=" " required>
+                    <label for="reg-confirm-pass">Nhập lại mật khẩu</label>
+                </div>
+
+                <div class="policy-check">
+                    <input type="checkbox" id="agree-term" required>
+                    <label for="agree-term">Tôi đồng ý với điều khoản sử dụng</label>
+                </div>
+
+                <button type="submit" class="btn-submit">Đăng ký tài khoản</button>
+            </form>
+
+        </div>
+    </div>
+
+    <div id="forgot-modal" class="modal-overlay">
+        <div class="modal-box">
+            <span class="close-btn">&times;</span>
+            
+            <div class="icon-brand" style="margin-bottom: 15px;">
+                <i class="fa-solid fa-lock"></i>
+            </div>
+            
+            <h3>Khôi phục mật khẩu</h3>
+            <p style="color: #888; font-size: 14px; margin-bottom: 20px;">
+                Nhập tên đăng nhập của bạn để lấy lại mật khẩu.
+            </p>
+            
+            <div class="input-group">
+                <input type="text" id="forgot-email" placeholder=" " required>
+                <label for="forgot-email">Tên đăng nhập</label>
+            </div>
+
+            <button type="button" id="btn-forgot-submit" class="btn-submit">Gửi yêu cầu</button>
+            
+            <div id="forgot-message" style="margin-top: 15px; font-size: 14px;"></div>
+        </div>
+    </div>
+
+    <script src="js/login.js"></script>
+</body>
+</html>
