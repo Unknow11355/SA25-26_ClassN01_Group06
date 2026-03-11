@@ -7,9 +7,9 @@ Dự án là bài tập lớn môn Kiến trúc phần mềm - Trường Công n
 👥 Nhóm thực hiện: Group 06
 Trần Hữu Kiên - 23010258 (Phase 1: Monolith Architecture)
 
-Nguyễn Mạnh Quyền - 23010482 (Phase 2: Microservices & API Gateway)
+Nguyễn Đình Quyền - 23010482 (Phase 2: Microservices & API Gateway)
 
-Giảng viên hướng dẫn: ThS. Vũ Quang Dũng
+Giảng viên hướng dẫn: Vũ Quang Dũng
 
 🛠 Công nghệ sử dụng (Tech Stack)
 Backend Runtime: Node.js
@@ -82,15 +82,16 @@ node server.js
 cd api-gateway
 node gateway.js
 Bước 4: Truy cập ứng dụng
-Mở trình duyệt web và truy cập qua cổng của API Gateway: http://localhost:8000 (hoặc cổng Gateway bạn cấu hình).
+Mở trình duyệt web và truy cập qua cổng của API Gateway: http://localhost:5000 (hoặc cổng Gateway bạn cấu hình).
 
 Lưu ý: Client tuyệt đối chỉ giao tiếp qua API Gateway, không gọi trực tiếp vào các Port Backend (3000).
 
 🧪 Kịch bản kiểm thử (Testing Scenarios)
 Kiểm thử Data Flow: Đăng ký tài khoản và kiểm tra xem dữ liệu có được ghi chính xác vào file data/users.json hay không.
 
-Kiểm thử Gateway Routing: Gửi request đặt vé (POST /booking) thông qua Gateway và quan sát log định tuyến (Proxy created -> Port 3001).
+Kiểm thử Gateway Routing: Gửi request đặt vé (POST /booking) thông qua Gateway và quan sát log định tuyến (Proxy created -> Port 5000).
 
 Kiểm thử Fault Isolation (Kill Switch): Tắt đột ngột tiến trình của Booking Service. Load lại trang chủ và trang đăng nhập để đảm bảo ứng dụng Legacy vẫn hoạt động bình thường, chứng minh khả năng cô lập lỗi.
 
 Kiểm thử Async (RabbitMQ): Thực hiện đặt vé thành công và kiểm tra độ trễ của API (dưới 50ms) cùng với Log xác nhận [Event Bus] Publishing event: BOOKING_CREATED chạy ngầm.
+
