@@ -1,97 +1,94 @@
 🎬 Movie Booking Online System
-📖 Giới thiệu dự án (Project Overview)
-Dự án Movie Booking Online System được phát triển nhằm mục đích xây dựng một hệ thống đặt vé xem phim trực tuyến hoàn chỉnh. Hơn thế nữa, dự án minh họa rõ nét quá trình tiến hóa của kiến trúc phần mềm (Software Architecture Evolution) từ mô hình Layered Monolith (Nguyên khối phân lớp) sang hệ thống Microservices (Vi dịch vụ) kết hợp Event-Driven Architecture (EDA).
+📖 Project Overview
+The Movie Booking Online System project aims to build a comprehensive online cinema ticket reservation system. Furthermore, the project clearly illustrates the Software Architecture Evolution from a Layered Monolith model to a Microservices ecosystem combined with Event-Driven Architecture (EDA).
 
-Dự án là bài tập lớn môn Kiến trúc phần mềm - Trường Công nghệ Thông tin, Đại học Phenikaa.
+This project serves as a major assignment for the Software Architecture course at the Faculty of Information Technology, Phenikaa University.
 
-👥 Nhóm thực hiện: Group 06
+👥 Development Team: Group 06
 Trần Hữu Kiên - 23010258 (Phase 1: Monolith Architecture)
 
 Nguyễn Đình Quyền - 23010482 (Phase 2: Microservices & API Gateway)
 
-Giảng viên hướng dẫn: Vũ Quang Dũng
+Instructor: Vũ Quang Dũng
 
-🛠 Công nghệ sử dụng (Tech Stack)
+🛠 Tech Stack
 Backend Runtime: Node.js
 
 Framework: Express.js
 
 Frontend: HTML5, CSS3, Vanilla JavaScript (Fetch API)
 
-Database: JSON File System (users.json, movies.json, bookings.json) - Sử dụng để mô phỏng Document-based DB phục vụ Rapid Prototyping.
+Database: JSON File System (users.json, movies.json, bookings.json) – Used to simulate a Document-based DB for Rapid Prototyping.
 
-Message Broker: RabbitMQ (thông qua thư viện amqplib để xử lý bất đồng bộ).
+Message Broker: RabbitMQ (via amqplib for asynchronous processing).
 
 API Gateway: http-proxy-middleware
 
-🏗 Kiến trúc Hệ thống (System Architecture)
-Dự án được chia làm 2 giai đoạn phát triển chiến lược để giải quyết các NFRs (Non-Functional Requirements) và ASRs (Architecturally Significant Requirements):
+🏗 System Architecture
+The project was developed in two strategic phases to address Non-Functional Requirements (NFRs) and Architecturally Significant Requirements (ASRs):
 
-Phase 1: Layered Monolith (Hệ thống cũ)
-Ứng dụng chạy trên một tiến trình duy nhất (Cổng 3000).
+Phase 1: Layered Monolith (Legacy System)
+The application runs on a single process (Port 3000).
 
-Áp dụng kiến trúc 3-Tier Layered: Controller -> Service -> Repository.
+Implements a 3-Tier Layered Architecture: Controller → Service → Repository.
 
-Phục vụ các tính năng: Đăng ký/Đăng nhập, Quản lý danh mục phim.
+Features: Registration/Login, Movie Catalog Management.
 
-Phase 2: Microservices Ecosystem (Hệ thống mới)
-Giải quyết bài toán thắt cổ chai (bottleneck) và đảm bảo tính cô lập lỗi (Fault Isolation) cho chức năng đặt vé có traffic cao:
+Phase 2: Microservices Ecosystem (Modern System)
+To resolve performance bottlenecks and ensure Fault Isolation for high-traffic booking functions:
 
-API Gateway (Port 5000): Điểm truy cập duy nhất (Single Entry Point) cho toàn bộ Client. Xử lý Request Routing và định tuyến.
+API Gateway (Port 5000): Acts as the Single Entry Point for all clients. Handles request routing and dispatching.
 
-Legacy Service (Port 3000): Xử lý UI, Auth và hiển thị Phim.
+Legacy Service (Port 3000): Manages the UI, Authentication, and Movie display.
 
-Booking Service (Port 5002): Core Microservice tách biệt hoàn toàn, sở hữu cơ sở dữ liệu riêng (bookings.json).
+Booking Service (Port 5002): A completely decoupled Core Microservice with its own dedicated database (bookings.json).
 
-RabbitMQ (Event-Driven): Xử lý bất đồng bộ (Asynchronous) cho tác vụ gửi Email xác nhận thông qua sự kiện BOOKING_CREATED, giảm thiểu độ trễ API.
+RabbitMQ (Event-Driven): Handles Asynchronous tasks, such as sending confirmation emails via the BOOKING_CREATED event, significantly reducing API latency.
 
-🚀 Hướng dẫn cài đặt và khởi chạy (How to Run)
-Yêu cầu hệ thống (Prerequisites)
-Đã cài đặt Node.js (phiên bản 14.x trở lên).
+🚀 How to Run
+Prerequisites
+Node.js installed (v14.x or higher).
 
-Đã cài đặt và chạy Docker (để chạy RabbitMQ container).
+Docker installed and running (to host the RabbitMQ container).
 
-Bước 1: Khởi động Message Broker (RabbitMQ)
-Mở terminal và chạy lệnh sau để khởi tạo container RabbitMQ:
+Step 1: Start the Message Broker (RabbitMQ)
+Open your terminal and run the following command to initialize the RabbitMQ container:
+
+Bash
 docker run -d --hostname rabbitmq-host --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3-management
 
-Bước 2: Cài đặt thư viện (Dependencies)
-Tại thư mục gốc của từng Service, tiến hành cài đặt các package cần thiết:
-# Cài đặt cho API Gateway
-cd api-gateway
-npm install
+Step 2: Install Dependencies
+Navigate to the root directory of each service and install the required packages:
 
-# Cài đặt cho Legacy Service
-cd legacy-service
-npm install
+Bash
+# Install for API Gateway
+cd api-gateway && npm install
 
-# Cài đặt cho Booking Service
-cd booking-service
-npm install
+# Install for Legacy Service
+cd legacy-service && npm install
 
-Bước 3: Khởi chạy các Services
-Vui lòng mở 3 terminal riêng biệt và chạy lần lượt các service sau:
+# Install for Booking Service
+cd booking-service && npm install
 
-1. Khởi chạy Legacy Service (Port 3000):
-cd legacy-service
-node server.js
-2. Khởi chạy Booking Service (Port 5002):
-cd booking-service
-node server.js
-3. Khởi chạy API Gateway (Port 5000):
-cd api-gateway
-node gateway.js
-Bước 4: Truy cập ứng dụng
-Mở trình duyệt web và truy cập qua cổng của API Gateway: http://localhost:5000 (hoặc cổng Gateway bạn cấu hình).
+Step 3: Launch Services
+Open three separate terminals and run each service in order:
 
-Lưu ý: Client tuyệt đối chỉ giao tiếp qua API Gateway, không gọi trực tiếp vào các Port Backend (3000).
+Legacy Service (Port 3000): cd legacy-service && node server.js
 
-🧪 Kịch bản kiểm thử (Testing Scenarios)
-Kiểm thử Data Flow: Đăng ký tài khoản và kiểm tra xem dữ liệu có được ghi chính xác vào file data/users.json hay không.
+Booking Service (Port 5002): cd booking-service && node server.js
 
-Kiểm thử Gateway Routing: Gửi request đặt vé (POST /booking) thông qua Gateway và quan sát log định tuyến (Proxy created -> Port 5000).
+API Gateway (Port 5000): cd api-gateway && node gateway.js
 
-Kiểm thử Fault Isolation (Kill Switch): Tắt đột ngột tiến trình của Booking Service. Load lại trang chủ và trang đăng nhập để đảm bảo ứng dụng Legacy vẫn hoạt động bình thường, chứng minh khả năng cô lập lỗi.
+Step 4: Access the Application
+Open your browser and navigate to the API Gateway: http://localhost:5000.
 
-Kiểm thử Async (RabbitMQ): Thực hiện đặt vé thành công và kiểm tra độ trễ của API (dưới 50ms) cùng với Log xác nhận [Event Bus] Publishing event: BOOKING_CREATED chạy ngầm.
+Note: Clients must communicate exclusively through the API Gateway. Do not call Backend ports (3000/5002) directly.
 
+🧪 Testing Scenarios
+Data Flow Testing: Register an account and verify that data is correctly persisted in data/users.json.
+
+Gateway Routing Testing: Send a booking request (POST /booking) through the Gateway and observe the routing logs (Proxy created -> Port 5000).
+
+Fault Isolation Testing (Kill Switch): Abruptly terminate the Booking Service process. Reload the homepage and login page to ensure the Legacy application remains functional, demonstrating fault isolation.
+
+Asynchronous Testing (RabbitMQ): Complete a booking and verify the API latency (under 50ms), while checking the logs for the background process: [Event Bus] Publishing event: BOOKING_CREATED.
